@@ -42,4 +42,4 @@ Like.init(
   }
 );
 
-module.exports = Vote;
+module.exports = Like;
