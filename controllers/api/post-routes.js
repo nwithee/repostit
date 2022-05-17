@@ -4,14 +4,12 @@ const { Post, User, Comment, Vote } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
-  console.log('======================');
   Post.findAll({
     attributes: [
       'id',
       'post_url',
       'title',
-      //'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)'), 'like_count']
     ],
     include: [
       {
@@ -82,6 +80,7 @@ router.post('/', (req, res) => {
   Post.create({
     title: req.body.title,
     post_url: req.body.post_url,
+    post_body: req.body.post_body,
     user_id: req.session.user_id
   })
     .then(dbPostData => res.json(dbPostData))
@@ -91,12 +90,12 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/upvote', (req, res) => {
+router.put('/like', (req, res) => {
   // make sure the session exists first
   if (req.session) {
     // pass session id along with all destructured properties on req.body
-    Post.upvote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
-      .then(updatedVoteData => res.json(updatedVoteData))
+    Post.like({ ...req.body, user_id: req.session.user_id }, { Like, Comment, User })
+      .then(updatedLikeData => res.json(updatedLikeData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
@@ -107,7 +106,9 @@ router.put('/upvote', (req, res) => {
 router.put('/:id', (req, res) => {
   Post.update(
     {
-      title: req.body.title
+      title: req.body.title,
+      post_body: req.body.post_body,
+      post_url: req.body.post_url
     },
     {
       where: {
