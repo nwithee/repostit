@@ -1,0 +1,28 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+*:visited {
+    color:pink;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    border: solid lightblue;
+    align-items: center;
+    color: pink;
+}
+
+.hero nav ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+}
+
+.hero nav {
+    width: 40%;
+    align-items: center;
+}
