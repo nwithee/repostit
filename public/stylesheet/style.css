@@ -7,6 +7,8 @@
     color:pink;
 }
 
+
+
 .hero {
     display: flex;
     justify-content: space-between;
@@ -25,6 +27,15 @@
 .hero nav {
     width: 40%;
     align-items: center;
+}
+
+h1 {
+    padding-left: 35%;
+}
+
+main {
+    border: solid lightblue;
+    margin-top: 50px;
 }
 
 .login-page {
@@ -52,4 +63,8 @@ form label {
 
 form>div {
     margin-bottom: 2%;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
 }
