@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
       'post_url',
       'post_body',
       'sm_site',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
@@ -26,6 +26,9 @@ router.get('/', (req, res) => {
         model: User,
         attributes: ['username']
       }
+    ],
+    order: [
+      ['id','ASC']
     ]
   })
     .then(dbPostData => res.json(dbPostData))
@@ -44,7 +47,9 @@ router.get('/:id', (req, res) => {
       'id',
       'post_url',
       'title',
-      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      'post_body',
+      'sm_site',
+      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
