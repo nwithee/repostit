@@ -12,7 +12,7 @@
     justify-content: space-between;
     border: solid lightblue;
     align-items: center;
-    color: pink;
+    
 }
 
 .hero nav ul {
@@ -25,4 +25,31 @@
 .hero nav {
     width: 40%;
     align-items: center;
+}
+
+.login-page {
+    border: solid lightblue;
+    border-width: 2px;
+    padding: 4em;
+    margin: 4rem;
+    border-bottom: 1px solid lightblue;
+    align-items: center;
+    float: right;
+    left: -50%;
+    position: relative;
+}
+
+.login-form {
+    align-items: center;
+    
+}
+
+form label {
+    display: inline-block;
+    align-items: center;
+    
+}
+
+form>div {
+    margin-bottom: 2%;
 }
