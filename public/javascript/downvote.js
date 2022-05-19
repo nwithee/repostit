@@ -1,11 +1,11 @@
-async function upvoteClickHandler(event) {
+async function downvoteClickHandler(event) {
     event.preventDefault();
 
     const id = window.location.toString().split('/')[
         window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch('/api/posts/vote', {
+    const response = await fetch('/api/posts/downvote', {
         method: 'PUT',
         body: JSON.stringify({
             post_id: id
@@ -18,8 +18,8 @@ async function upvoteClickHandler(event) {
     if (response.ok) {
         document.location.reload();
     } else {
-        alert("You cannot like a post more than once");
+        alert("You cannot dislike a post more than once");
     }
 }
 
-document.querySelector('.upvote-btn').addEventListener('click', upvoteClickHandler);
+document.querySelector('.downvote-btn').addEventListener('click', downvoteClickHandler);
