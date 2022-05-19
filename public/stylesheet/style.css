@@ -7,11 +7,14 @@
     color:pink;
 }
 
+
+
 .hero {
     display: flex;
     justify-content: space-between;
     border: solid lightblue;
     align-items: center;
+    
     
 }
 
@@ -24,6 +27,16 @@
 
 .hero nav {
     width: 40%;
+    align-items: center;
+}
+
+h1 {
+    padding-left: 35%;
+}
+
+main {
+    border: solid lightblue;
+    margin-top: 50px;
     align-items: center;
 }
 
@@ -52,4 +65,9 @@ form label {
 
 form>div {
     margin-bottom: 2%;
+}
+
+body {
+    background-color: rgb(238, 238, 238);
+    
 }

@@ -1,7 +1,17 @@
-<ol class="list-post">
+<form class="new-post">
+        <label for="post-title"></label>
+    <button type="submit" class="btn" id="post-new">Re-Post-It</button>
+</form>
+<div>
+    <p>Repost all your favorite social media posts here!  Don't forget to include the link!</p>
+</div>
+    
+<ul class="list-post">
     {{#each posts as |post|}}
     <li>
         {{> post-info post }}
     </li>
     {{/each}}
-</ol>
+</ul>
+
+<script src="/javascript/add-post.js"></script>
