@@ -27,9 +27,6 @@ router.get('/', (req, res) => {
         model: User,
         attributes: ['username']
       }
-    ],
-    order: [
-      ['id','ASC']
     ]
   })
     .then(dbPostData => res.json(dbPostData))
