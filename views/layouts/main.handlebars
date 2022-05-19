@@ -15,9 +15,11 @@
     <nav>
         <ul>
         <li class="li-inline nav-item"><a href="/">Homepage</a></li>
-        <li class="li-inline nav-item"><a href="/login">Login</a></li>
+        {{#if loggedIn}}
         <li class="li-inline nav-item"><a href="#" id="logout">Logout</a></li>
-        <li class="li-inline nav-item"><a href="/aboutus">About Us</a></li>
+        {{else}}
+        <li class="li-inline nav-item"><a href="/login">Login</a></li>
+        {{/if}}
         </ul>
     </nav>
   </header>

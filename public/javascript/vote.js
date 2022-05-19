@@ -5,7 +5,7 @@ async function upvoteClickHandler(event) {
         window.location.toString().split('/').length - 1
     ];
 
-    const response = await fetch('/api/posts/like', {
+    const response = await fetch('/api/posts/vote', {
         method: 'PUT',
         body: JSON.stringify({
             post_id: id
@@ -18,8 +18,8 @@ async function upvoteClickHandler(event) {
     if (response.ok) {
         document.location.reload();
     } else {
-        alert(response.statusText);
+        alert("You cannot like a post more than once");
     }
 }
 
-document.querySelector('.like-btn').addEventListener('click', upvoteClickHandler);
+document.querySelector('.upvote-btn').addEventListener('click', upvoteClickHandler);

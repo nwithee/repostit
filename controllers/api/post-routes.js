@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
-const { Post, User, Comment, Vote } = require('../../models');
+const { Post, User, Comment, Vote, Downvote } = require('../../models');
 
 // get all users
 router.get('/', (req, res) => {
@@ -11,7 +11,8 @@ router.get('/', (req, res) => {
       'post_url',
       'post_body',
       'sm_site',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('((SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id) - (SELECT COUNT(*) FROM Downvote WHERE post.id = Downvote.post_id))'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
@@ -26,9 +27,6 @@ router.get('/', (req, res) => {
         model: User,
         attributes: ['username']
       }
-    ],
-    order: [
-      ['id','ASC']
     ]
   })
     .then(dbPostData => res.json(dbPostData))
@@ -49,7 +47,8 @@ router.get('/:id', (req, res) => {
       'title',
       'post_body',
       'sm_site',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('((SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id) - (SELECT COUNT(*) FROM Downvote WHERE post.id = Downvote.post_id))'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
@@ -95,12 +94,27 @@ router.post('/', (req, res) => {
     });
 });
 
+//Code for counting likes
 router.put('/vote', (req, res) => {
   // make sure the session exists first
   if (req.session) {
     // pass session id along with all destructured properties on req.body
     Post.vote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
       .then(updatedVoteData => res.json(updatedVoteData))
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
+});
+
+//code for counting dislikes
+router.put('/downvote', (req, res) => {
+  // make sure the session exists first
+  if (req.session) {
+    // pass session id along with all destructured properties on req.body
+    Post.downvote({ ...req.body, user_id: req.session.user_id }, { Downvote, Comment, User })
+      .then(updatedDownvoteData => res.json(updatedDownvoteData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
