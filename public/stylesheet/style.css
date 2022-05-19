@@ -15,6 +15,7 @@
     border: solid lightblue;
     align-items: center;
     
+    
 }
 
 .hero nav ul {
@@ -36,6 +37,7 @@ h1 {
 main {
     border: solid lightblue;
     margin-top: 50px;
+    align-items: center;
 }
 
 .login-page {
@@ -67,4 +69,5 @@ form>div {
 
 body {
     background-color: rgb(238, 238, 238);
+    
 }
