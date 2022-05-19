@@ -7,14 +7,15 @@ router.get('/', (req, res) => {
   Post.findAll({
     attributes: [
       'id',
-      'post_url',
       'title',
-      //[sequelize.literal('(SELECT COUNT(*) FROM like WHERE post.id = like.post_id)'), 'like_count']
+      'post_url',
+      'post_body',
+      'sm_site',
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
         model: Comment,
-        //removed created_at
         attributes: ['id', 'comment_text', 'post_id', 'user_id'],
         include: {
           model: User,
@@ -43,13 +44,11 @@ router.get('/:id', (req, res) => {
       'id',
       'post_url',
       'title',
-      //'created_at',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
         model: Comment,
-        //removed created_at
         attributes: ['id', 'comment_text', 'post_id', 'user_id'],
         include: {
           model: User,
@@ -81,6 +80,7 @@ router.post('/', (req, res) => {
     title: req.body.title,
     post_url: req.body.post_url,
     post_body: req.body.post_body,
+    sm_site: req.body.sm_site,
     user_id: req.session.user_id
   })
     .then(dbPostData => res.json(dbPostData))
@@ -90,12 +90,12 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/like', (req, res) => {
+router.put('/vote', (req, res) => {
   // make sure the session exists first
   if (req.session) {
     // pass session id along with all destructured properties on req.body
-    Post.like({ ...req.body, user_id: req.session.user_id }, { Like, Comment, User })
-      .then(updatedLikeData => res.json(updatedLikeData))
+    Post.vote({ ...req.body, user_id: req.session.user_id }, { Vote, Comment, User })
+      .then(updatedVoteData => res.json(updatedVoteData))
       .catch(err => {
         console.log(err);
         res.status(500).json(err);
