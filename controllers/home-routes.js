@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
       'sm_site',
       'created_at',
       'post_body',
-      [sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
+      [sequelize.literal('((SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id) + 10)'), 'vote_count']
+      //[sequelize.literal('(SELECT COUNT(*) FROM vote WHERE post.id = vote.post_id)'), 'vote_count']
     ],
     include: [
       {
@@ -92,7 +93,7 @@ router.get('/post/:id', (req, res) => {
       const post = dbPostData.get({ plain: true });
 
       // pass data to template
-      res.render('single-post', { 
+      res.render('comment', { 
         post,
       loggedIn: req.session.loggedIn
      });
