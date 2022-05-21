@@ -7,7 +7,7 @@ async function newFormHandler(event) {
     const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
-            title
+            title,
             // post_url
         }),
         headers: {
@@ -16,10 +16,10 @@ async function newFormHandler(event) {
     });
 
     if (response.ok) {
-        document.location.replace('/new-post');
+        document.location.replace('/homepage');
     } else {
         alert(response.statusText);
     }
 }
 
-document.querySelector('.new-post').addEventListener('submit', newFormHandler);
+document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);

@@ -3,8 +3,13 @@
     text-decoration: none;
 }
 
-*:visited {
-    color:pink;
+.new-post{
+    background-color: #0bd3d3 ;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex: 6;
 }
 
 
@@ -12,7 +17,7 @@
 .hero {
     display: flex;
     justify-content: space-between;
-    border: solid lightblue;
+    border: solid #0bd3d3;
     align-items: center;
     
     
@@ -35,17 +40,17 @@ h1 {
 }
 
 main {
-    border: solid lightblue;
+    border: solid #0bd3d3;
     margin-top: 50px;
     align-items: center;
 }
 
 .login-page {
-    border: solid lightblue;
+    border: solid #0bd3d3;
     border-width: 2px;
     padding: 4em;
     margin: 4rem;
-    border-bottom: 1px solid lightblue;
+    border-bottom: 1px solid #0bd3d3;
     align-items: center;
     float: right;
     left: -50%;
@@ -68,6 +73,6 @@ form>div {
 }
 
 body {
-    background-color: rgb(238, 238, 238);
+    background-color: white;
     
 }
