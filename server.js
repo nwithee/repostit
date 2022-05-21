@@ -3,8 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const helpers = require('./utils/helper');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const passport = require('./config/passport');
+
 
 
 const app = express();
