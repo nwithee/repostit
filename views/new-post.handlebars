@@ -1,0 +1,28 @@
+
+<sections class="new-post">
+  <h2>Create New Post</h2>
+
+  <form class="new-post-form">
+    <div>
+      <label for="post-title">Title</label>
+      <input type="text" id="post-title" name="post-title" />
+    </div>
+    <div>
+      <label for="post-url">Link</label>
+      <input id="post-url" name="post-url" />
+    </div>
+    <div>
+      <label for="post-body">Description</label>
+      <input type="text_area" id="post-body" name="post-body" />
+    </div>
+      <div>
+      <label for="post-sm-site">Source Site</label>
+      <input type="text" id="post-sm-site" name="post-sm-site" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</sections>
+
+{{# if loggedIn}}
+<script src="/javascript/add-post.js"></script>
+{{/if}}

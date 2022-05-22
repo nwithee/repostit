@@ -1,0 +1,17 @@
+    <article class="post">
+      <div class="title">
+        <a href="{{post_url}}" target="_blank">{{title}}</a>
+        <span>({{format_url post_url}})</span>
+        <br>
+        <span> Posted by: {{user.username}}</span>
+        <br>
+        <span>Source Site: {{sm_site}}</span>
+        <br>
+        <span>Description: {{post_body}}</span>
+      </div>
+      <div class="meta">
+        {{vote_count}} {{format_plural "Like" vote_count}}
+        |
+        <a href="/post/{{id}}">{{comments.length}} {{format_plural "comment" comments.length}}</a>
+      </div>
+    </article>
