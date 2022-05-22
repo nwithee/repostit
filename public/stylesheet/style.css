@@ -6,11 +6,23 @@
 .new-post{
     background-color: #0bd3d3 ;
     color: black;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    display: block;
+    width: 150px;
+    margin: auto;
+    text-align: center;
     flex: 6;
+    border-style: solid;
+    border-color: #0bd3d3;
+    padding: 10px 632px;
 }
+
+.new-post-form{
+    text-align: center;
+    align-content: center;
+    height: 200px;
+    font-size: large;
+}
+
 
 
 
