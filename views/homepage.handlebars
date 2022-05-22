@@ -1,7 +1,5 @@
-<form class="new-post">
-        <label for="post-title"></label>
-    <button type="submit" class="btn" id="post-new">Re-Post-It</button>
-</form>
+
+<button type="submit" class="btn" id="new-post-btn"><a href="/new-post">Re-Post-It </a></button>
 <div>
     <p>Repost all your favorite social media posts here!  Don't forget to include the link!</p>
 </div>
@@ -14,4 +12,6 @@
     {{/each}}
 </ul>
 
+{{# if loggedIn}}
 <script src="/javascript/add-post.js"></script>
+{{/if}}

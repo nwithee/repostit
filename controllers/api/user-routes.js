@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const { User, Post, Comment, Vote } = require('../../models');
+// const passport = require('passport');
+const passport = require('../../config/passport');
+
 
 //get all users
 router.get('/', (req, res) => {
@@ -102,6 +105,8 @@ router.post('/login', (req, res) => {
     });
   });
 });
+
+
 
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
